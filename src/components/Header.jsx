@@ -66,7 +66,7 @@ const Header = () => {
             <div className="container header-container">
                 <Link to="/" className="logo">
                     <Film className="logo-icon" size={28} />
-                    <span>Cine<span className="text-highlight">Flow</span></span>
+                    <span>Film<span className="text-highlight">Stack</span></span>
                 </Link>
 
                 <nav className="nav-links">

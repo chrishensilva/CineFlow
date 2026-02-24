@@ -40,8 +40,8 @@ const SearchPage = () => {
     return (
         <>
             <Helmet>
-                <title>{query ? `Search Results for "${query}"` : 'Search Movies'} | CineFlow</title>
-                <meta name="description" content={`Find the best movies related to ${query || 'your favorite genres'} on CineFlow.`} />
+                <title>{query ? `Search Results for "${query}"` : 'Search Movies'} | FilmStack</title>
+                <meta name="description" content={`Find the best movies related to ${query || 'your favorite genres'} on FilmStack.`} />
             </Helmet>
             <Header />
             <div className="container search-page">
