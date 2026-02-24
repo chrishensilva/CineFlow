@@ -1,0 +1,115 @@
+export const movies = [
+  {
+    id: 1,
+    title: "Dune: Part Two",
+    year: 2024,
+    rating: 8.8,
+    genre: ["Sci-Fi", "Adventure"],
+    description: "Paul Atreides unites with Chani and the Fremen while on a warpath of revenge against the conspirators who destroyed his family.",
+    backdrop: "https://image.tmdb.org/t/p/original/xOMo8BRK7PfcJv9JCnx7s5hj0PL.jpg",
+    poster: "https://image.tmdb.org/t/p/w500/1pdfLvkbY9ohJlCjQH2CZjjYVvJ.jpg",
+    trailer: "https://www.youtube.com/watch?v=Way9Dexny3w",
+    downloadLink: "#",
+    streamLink: "#"
+  },
+  {
+    id: 2,
+    title: "Oppenheimer",
+    year: 2023,
+    rating: 8.4,
+    genre: ["Biography", "Drama", "History"],
+    description: "The story of American scientist J. Robert Oppenheimer and his role in the development of the atomic bomb.",
+    backdrop: "https://image.tmdb.org/t/p/original/fm6KqXpk3M2HVveHwvkHIeHY36i.jpg",
+    poster: "https://image.tmdb.org/t/p/w500/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg",
+    trailer: "https://www.youtube.com/watch?v=uYPbbksJxIg",
+    downloadLink: "#",
+    streamLink: "#"
+  },
+  {
+    id: 3,
+    title: "The Batman",
+    year: 2022,
+    rating: 7.8,
+    genre: ["Action", "Crime", "Drama"],
+    description: "When the Riddler, a sadistic serial killer, begins murdering key political figures in Gotham, Batman is forced to investigate the city's hidden corruption and question his family's involvement.",
+    backdrop: "https://image.tmdb.org/t/p/original/tRS6jvPM9qPrrnx2KRp3ew96Yot.jpg",
+    poster: "https://image.tmdb.org/t/p/w500/74xTEgt7R36Fpooo50x9TfdlnJR.jpg",
+    trailer: "https://www.youtube.com/watch?v=mqqft2x_Aa4",
+    downloadLink: "#",
+    streamLink: "#"
+  },
+  {
+    id: 4,
+    title: "Interstellar",
+    year: 2014,
+    rating: 8.7,
+    genre: ["Sci-Fi", "Drama"],
+    description: "A team of explorers travel through a wormhole in space in an attempt to ensure humanity's survival.",
+    backdrop: "https://image.tmdb.org/t/p/original/rAiYTfKGqDCRIIqo664sY9XZIvQ.jpg",
+    poster: "https://image.tmdb.org/t/p/w500/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg",
+    trailer: "https://www.youtube.com/watch?v=zSWdZVtXT7E",
+    downloadLink: "#",
+    streamLink: "#"
+  },
+  {
+    id: 5,
+    title: "Spider-Man: Across the Spider-Verse",
+    year: 2023,
+    rating: 8.6,
+    genre: ["Animation", "Action", "Adventure"],
+    description: "Miles Morales catapults across the Multiverse, where he encounters a team of Spider-People charged with protecting its very existence.",
+    backdrop: "https://image.tmdb.org/t/p/original/4HodYYKEIsGOdinkGi2Ucz6X9i0.jpg",
+    poster: "https://image.tmdb.org/t/p/w500/8Vt6mWEReuy4Of61Lnj5Xj704m8.jpg",
+    trailer: "https://www.youtube.com/watch?v=cqGjhVJWtEg",
+    downloadLink: "#",
+    streamLink: "#"
+  },
+  {
+    id: 6,
+    title: "John Wick: Chapter 4",
+    year: 2023,
+    rating: 7.7,
+    genre: ["Action", "Thriller"],
+    description: "John Wick uncovers a path to defeating The High Table. But before he can earn his freedom, Wick must face off against a new enemy with powerful alliances across the globe.",
+    backdrop: "https://image.tmdb.org/t/p/original/7I6VUdPj6tQECNHdviJkUHD2u89.jpg",
+    poster: "https://image.tmdb.org/t/p/w500/vZloFAK7NmvMGKE7LsyLQeLNJPf.jpg",
+    trailer: "https://www.youtube.com/watch?v=qEVUtrk8_B4",
+    downloadLink: "#",
+    streamLink: "#"
+  },
+  {
+    id: 7,
+    title: "Inception",
+    year: 2010,
+    rating: 8.8,
+    genre: ["Sci-Fi", "Action", "Thriller"],
+    description: "A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a CEO.",
+    backdrop: "https://image.tmdb.org/t/p/original/8ZTVqvKDQ8emSGUEMjsS4yHAwrp.jpg",
+    poster: "https://image.tmdb.org/t/p/w500/ljsZTbVsrQSqZgWeep2B1QiDKuh.jpg",
+    trailer: "https://www.youtube.com/watch?v=YoHD9XEInc0",
+    downloadLink: "#",
+    streamLink: "#"
+  },
+  {
+    id: 8,
+    title: "The Dark Knight",
+    year: 2008,
+    rating: 9.0,
+    genre: ["Action", "Crime", "Drama"],
+    description: "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice.",
+    backdrop: "https://image.tmdb.org/t/p/original/nMKdUUepR0i5zn0y1T4CsSB5ez.jpg",
+    poster: "https://image.tmdb.org/t/p/w500/qJ2tW6WMUDux911BTUgMe1nNaD.jpg",
+    trailer: "https://www.youtube.com/watch?v=EXeTwQWrcwY",
+    downloadLink: "#",
+    streamLink: "#"
+  }
+];
+
+export const categories = [
+  { id: 1, name: "Action" },
+  { id: 2, name: "Sci-Fi" },
+  { id: 3, name: "Drama" },
+  { id: 4, name: "Comedy" },
+  { id: 5, name: "Horror" },
+  { id: 6, name: "Thriller" },
+];

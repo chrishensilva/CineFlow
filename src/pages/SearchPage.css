@@ -1,0 +1,91 @@
+/* SearchPage.css */
+.search-page {
+    padding-top: 100px;
+    /* Header offest */
+    min-height: 100vh;
+}
+
+.search-header {
+    margin-bottom: 40px;
+    border-bottom: 1px solid #333;
+    padding-bottom: 20px;
+}
+
+.search-title {
+    font-size: 2rem;
+    color: white;
+}
+
+.search-query {
+    color: var(--primary-color);
+}
+
+.search-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 30px;
+    padding-bottom: 60px;
+}
+
+.search-card {
+    background: #1a1a1a;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    position: relative;
+}
+
+.search-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+    z-index: 10;
+}
+
+.search-card img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.search-card-info {
+    padding: 15px;
+}
+
+.search-card-title {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.search-card-meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.no-results {
+    text-align: center;
+    padding: 60px 0;
+    color: var(--text-muted);
+}
+
+.no-results h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: white;
+}
+
+@media (max-width: 600px) {
+    .search-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+
+    .search-card img {
+        height: 220px;
+    }
+}
