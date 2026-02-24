@@ -1,4 +1,4 @@
-# Project: "FilmStack" - Automated Movie Discovery & Streaming Portal
+# Project: "CineFlow" - Automated Movie Discovery & Streaming Portal
 **Goal:** A React-based web application that automatically fetches movie metadata and provides streaming/download links via third-party aggregators.
 
 ---
@@ -43,7 +43,7 @@
 
 ## 3. Implementation Steps
 
-1.  **Initialize Project:** `npm create vite@latest filmstack --template react`.
+1.  **Initialize Project:** `npm create vite@latest cineflow --template react`.
 2.  **API Integration:** Create a `services/api.js` file to handle all `fetch` requests to TMDB.
 3.  **Dynamic Routing:** Set up routes so that clicking a movie card opens a detailed view based on the ID.
 4.  **The "Stream" Logic:** Use an `<iframe>` to embed the video player, passing the movie's ID into the URL of the embed provider.

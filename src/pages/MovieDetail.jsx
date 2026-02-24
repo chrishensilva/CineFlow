@@ -100,9 +100,9 @@ const MovieDetail = () => {
     return (
         <div className="detail-page-wrapper">
             <Helmet>
-                <title>{movie.title} | FilmStack</title>
+                <title>{movie.title} | CineFlow</title>
                 <meta name="description" content={movie.description?.slice(0, 160)} />
-                <meta property="og:title" content={`${movie.title} | FilmStack`} />
+                <meta property="og:title" content={`${movie.title} | CineFlow`} />
                 <meta property="og:description" content={movie.description?.slice(0, 160)} />
                 <meta property="og:image" content={movie.backdrop || movie.poster} />
             </Helmet>

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://filmstack.example.com/sitemap.xml
+Sitemap: https://cineflow.example.com/sitemap.xml

@@ -74,7 +74,7 @@ const MoviesPage = () => {
     return (
         <>
             <Helmet>
-                <title>Explore Movies | FilmStack - Discover Your Next Favorite Film</title>
+                <title>Explore Movies | CineFlow - Discover Your Next Favorite Film</title>
                 <meta name="description" content="Browse our extensive collection of movies. Filter by genre, year, and popularity to find exactly what you're looking for." />
             </Helmet>
             <Header />

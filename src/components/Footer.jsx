@@ -48,7 +48,7 @@ const Footer = ({ movie }) => {
                 </div>*/}
 
                 <div className="copyright">
-                    &copy; {new Date().getFullYear()} FilmStack. All rights reserved.
+                    &copy; {new Date().getFullYear()} CineFlow. All rights reserved.
                 </div>
             </div>
         </footer>

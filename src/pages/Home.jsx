@@ -65,8 +65,8 @@ const Home = () => {
     return (
         <>
             <Helmet>
-                <title>FilmStack | Discover & Stream Latest Movies</title>
-                <meta name="description" content="Explore trending movies, upcoming releases, and action blockbusters on FilmStack. Your automated movie discovery portal." />
+                <title>CineFlow | Discover & Stream Latest Movies</title>
+                <meta name="description" content="Explore trending movies, upcoming releases, and action blockbusters on CineFlow. Your automated movie discovery portal." />
             </Helmet>
             <Header />
             <Hero movie={featuredMovie} />
