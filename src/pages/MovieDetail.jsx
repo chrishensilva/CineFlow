@@ -8,34 +8,26 @@ import StreamModal from '../components/StreamModal';
 import DownloadModal from '../components/DownloadModal';
 import { tmdb } from '../services/tmdb';
 import { Helmet } from 'react-helmet-async';
+import { useQuery } from '@tanstack/react-query';
 import './MovieDetail.css';
 
 const MovieDetail = () => {
     const { id } = useParams();
-    const [movie, setMovie] = useState(null);
-    const [loading, setLoading] = useState(true);
     const [showStream, setShowStream] = useState(false);
     const [showDownload, setShowDownload] = useState(false);
     const posterRef = useRef(null);
     const infoRef = useRef(null);
     const castRef = useRef(null);
 
-    useEffect(() => {
-        const fetchMovie = async () => {
-            setLoading(true);
-            try {
-                const data = await tmdb.getMovieDetails(id);
-                if (data) {
-                    setMovie(tmdb.formatMovie(data));
-                }
-            } catch (error) {
-                console.error("Error fetching movie details:", error);
-            } finally {
-                setLoading(false);
-            }
-        };
+    const { data: movie, isLoading: loading } = useQuery({
+        queryKey: ['movie', id],
+        queryFn: async () => {
+            const data = await tmdb.getMovieDetails(id);
+            return data ? tmdb.formatMovie(data) : null;
+        }
+    });
 
-        fetchMovie();
+    useEffect(() => {
         window.scrollTo(0, 0);
     }, [id]);
 
@@ -100,11 +92,28 @@ const MovieDetail = () => {
     return (
         <div className="detail-page-wrapper">
             <Helmet>
-                <title>{movie.title} | CineFlow</title>
+                <title>{movie.title} – Stream & Details on CineFlow</title>
                 <meta name="description" content={movie.description?.slice(0, 160)} />
-                <meta property="og:title" content={`${movie.title} | CineFlow`} />
+                <link rel="canonical" href={`https://cineflow.live/movie/${movie.id}`} />
+                <meta property="og:title" content={`${movie.title} – CineFlow`} />
                 <meta property="og:description" content={movie.description?.slice(0, 160)} />
                 <meta property="og:image" content={movie.backdrop || movie.poster} />
+                <script type="application/ld+json">
+                    {JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": "Movie",
+                        "name": movie.title,
+                        "description": movie.description,
+                        "image": movie.poster,
+                        "datePublished": movie.year,
+                        "aggregateRating": {
+                            "@type": "AggregateRating",
+                            "ratingValue": movie.rating,
+                            "bestRating": "10",
+                            "worstRating": "1"
+                        }
+                    })}
+                </script>
             </Helmet>
             <Header />
             <div className="movie-detail">

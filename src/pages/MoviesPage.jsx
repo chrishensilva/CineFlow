@@ -6,15 +6,13 @@ import { tmdb } from '../services/tmdb';
 import { Link } from 'react-router-dom';
 import { Star, Calendar } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
+import { useQuery } from '@tanstack/react-query';
 import './MoviesPage.css';
 
 import Filters from '../components/Filters';
 
 const MoviesPage = () => {
-    const [movies, setMovies] = useState([]);
     const [page, setPage] = useState(1);
-    const [totalPages, setTotalPages] = useState(0);
-    const [loading, setLoading] = useState(true);
     const [apiKeyMissing, setApiKeyMissing] = useState(false);
 
     // Filter states
@@ -31,37 +29,37 @@ const MoviesPage = () => {
         fetchGenres();
     }, []);
 
-    useEffect(() => {
-        const fetchMovies = async () => {
+    const { data, isLoading: loading } = useQuery({
+        queryKey: ['movies', page, selectedGenre, selectedYear, sortBy],
+        queryFn: async () => {
             if (import.meta.env.VITE_TMDB_API_KEY === 'your_tmdb_api_key_here' || !import.meta.env.VITE_TMDB_API_KEY) {
                 setApiKeyMissing(true);
-                setLoading(false);
-                return;
+                return null;
             }
 
-            setLoading(true);
-            try {
-                const params = {
-                    page,
-                    sort_by: sortBy,
-                    with_genres: selectedGenre,
-                    primary_release_year: selectedYear
+            const params = {
+                page,
+                sort_by: sortBy,
+                with_genres: selectedGenre,
+                primary_release_year: selectedYear
+            };
+
+            const res = await tmdb.getDiscover(params);
+            if (res) {
+                return {
+                    movies: res.results.map(tmdb.formatMovie),
+                    totalPages: Math.min(res.total_pages, 500)
                 };
-
-                const data = await tmdb.getDiscover(params);
-                if (data) {
-                    setMovies(data.results.map(tmdb.formatMovie));
-                    setTotalPages(Math.min(data.total_pages, 500));
-                }
-            } catch (error) {
-                console.error("Error fetching movies:", error);
-            } finally {
-                setLoading(false);
-                window.scrollTo({ top: 0, behavior: 'smooth' });
             }
-        };
+            return { movies: [], totalPages: 0 };
+        },
+        keepPreviousData: true
+    });
 
-        fetchMovies();
+    const { movies = [], totalPages = 0 } = data || {};
+
+    useEffect(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     }, [page, selectedGenre, selectedYear, sortBy]);
 
     const handleReset = () => {
@@ -74,8 +72,9 @@ const MoviesPage = () => {
     return (
         <>
             <Helmet>
-                <title>Explore Movies | CineFlow - Discover Your Next Favorite Film</title>
-                <meta name="description" content="Browse our extensive collection of movies. Filter by genre, year, and popularity to find exactly what you're looking for." />
+                <title>Explore Movies | CineFlow – Discover Your Next Favorite Film</title>
+                <meta name="description" content="Browse our extensive collection of movies. Filter by genre, year, and popularity on CineFlow to find exactly what you're looking for." />
+                <link rel="canonical" href="https://cineflow.live/movies" />
             </Helmet>
             <Header />
             <div className="container movies-page">

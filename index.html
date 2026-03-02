@@ -9,12 +9,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <!-- SEO Meta Tags -->
-  <title>CineFlow | Discover, Stream & Download Movies Automatically</title>
+  <title>CineFlow – Discover & Stream Movies Automatically</title>
+  <link rel="canonical" href="https://cineflow.live" />
   <meta name="description"
     content="CineFlow - The ultimate movie discovery portal. Stream trailers, get download links, and explore trending movies with automatic TMDB metadata updates." />
   <meta name="keywords"
     content="movies, streaming, download movies, movie database, TMDB, CineFlow, trailers, latest films" />
-  <meta name="author" content="CineFlow Team" />
+  <meta name="author" content="CineFlow" />
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "CineFlow",
+      "url": "https://cineflow.live",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://cineflow.live/search?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+  </script>
 
   <!-- Open Graph (Facebook/Social) -->
   <meta property="og:title" content="CineFlow | Automated Movie Discovery" />

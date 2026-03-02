@@ -47,6 +47,7 @@ const Hero = ({ movie }) => {
                     src={movie.backdrop}
                     alt={movie.title}
                     className="hero-image"
+                    fetchpriority="high"
                 />
                 <div className="hero-overlay"></div>
 

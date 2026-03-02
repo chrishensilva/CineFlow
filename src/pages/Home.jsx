@@ -6,53 +6,49 @@ import Footer from '../components/Footer';
 import { tmdb } from '../services/tmdb';
 import { Helmet } from 'react-helmet-async';
 
+import { useQuery } from '@tanstack/react-query';
+
 const Home = () => {
-    const [featuredMovie, setFeaturedMovie] = useState(null);
-    const [trending, setTrending] = useState([]);
-    const [newReleases, setNewReleases] = useState([]);
-    const [actionMovies, setActionMovies] = useState([]);
-    const [scifiMovies, setScifiMovies] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const { data, isLoading: loading } = useQuery({
+        queryKey: ['homeData'],
+        queryFn: async () => {
+            const [trendingRes, upcomingRes, actionRes, scifiRes] = await Promise.all([
+                tmdb.getTrending(),
+                tmdb.getUpcoming(),
+                tmdb.getMoviesByGenre(28),
+                tmdb.getMoviesByGenre(878)
+            ]);
 
-    useEffect(() => {
-        const fetchAllData = async () => {
-            setLoading(true);
-            try {
-                const [trendingRes, upcomingRes, actionRes, scifiRes] = await Promise.all([
-                    tmdb.getTrending(),
-                    tmdb.getUpcoming(),
-                    tmdb.getMoviesByGenre(28),
-                    tmdb.getMoviesByGenre(878)
-                ]);
+            const formattedTrending = (trendingRes.results || []).map(tmdb.formatMovie);
+            const formattedUpcoming = upcomingRes.map(tmdb.formatMovie);
+            const formattedAction = (actionRes.results || []).map(tmdb.formatMovie);
+            const formattedScifi = (scifiRes.results || []).map(tmdb.formatMovie);
 
-                const formattedTrending = (trendingRes.results || []).map(tmdb.formatMovie);
-                const formattedUpcoming = upcomingRes.map(tmdb.formatMovie);
-                const formattedAction = (actionRes.results || []).map(tmdb.formatMovie);
-                const formattedScifi = (scifiRes.results || []).map(tmdb.formatMovie);
-
-                setTrending(formattedTrending);
-                setNewReleases(formattedUpcoming);
-                setActionMovies(formattedAction);
-                setScifiMovies(formattedScifi);
-
-                if (formattedTrending.length > 0) {
-                    // Fetch full details for the featured movie to get the trailer
-                    const fullFeatured = await tmdb.getMovieDetails(formattedTrending[0].id);
-                    if (fullFeatured) {
-                        setFeaturedMovie(tmdb.formatMovie(fullFeatured));
-                    } else {
-                        setFeaturedMovie(formattedTrending[0]);
-                    }
+            let featured = formattedTrending[0] || null;
+            if (featured) {
+                const fullFeatured = await tmdb.getMovieDetails(featured.id);
+                if (fullFeatured) {
+                    featured = tmdb.formatMovie(fullFeatured);
                 }
-            } catch (error) {
-                console.error("Error fetching home data:", error);
-            } finally {
-                setLoading(false);
             }
-        };
 
-        fetchAllData();
-    }, []);
+            return {
+                trending: formattedTrending,
+                newReleases: formattedUpcoming,
+                actionMovies: formattedAction,
+                scifiMovies: formattedScifi,
+                featuredMovie: featured
+            };
+        }
+    });
+
+    const {
+        trending = [],
+        newReleases = [],
+        actionMovies = [],
+        scifiMovies = [],
+        featuredMovie = null
+    } = data || {};
 
     if (loading) {
         return (
@@ -65,8 +61,9 @@ const Home = () => {
     return (
         <>
             <Helmet>
-                <title>CineFlow | Discover & Stream Latest Movies</title>
+                <title>CineFlow – Discover & Stream Latest Movies</title>
                 <meta name="description" content="Explore trending movies, upcoming releases, and action blockbusters on CineFlow. Your automated movie discovery portal." />
+                <link rel="canonical" href="https://cineflow.live/" />
             </Helmet>
             <Header />
             <Hero movie={featuredMovie} />

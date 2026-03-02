@@ -7,33 +7,24 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import './SearchPage.css';
 
+import { useQuery } from '@tanstack/react-query';
+
 const SearchPage = () => {
-    const [results, setResults] = useState([]);
-    const [loading, setLoading] = useState(false);
     const location = useLocation();
     const searchParams = new URLSearchParams(location.search);
     const query = searchParams.get('q') || '';
 
-    useEffect(() => {
-        const fetchResults = async () => {
-            if (query) {
-                setLoading(true);
-                try {
-                    const data = await tmdb.searchMovies(query);
-                    if (data) {
-                        setResults(data.map(tmdb.formatMovie));
-                    }
-                } catch (error) {
-                    console.error("Error searching movies:", error);
-                } finally {
-                    setLoading(false);
-                }
-            } else {
-                setResults([]);
-            }
-        };
+    const { data: results = [], isLoading: loading } = useQuery({
+        queryKey: ['search', query],
+        queryFn: async () => {
+            if (!query) return [];
+            const data = await tmdb.searchMovies(query);
+            return data ? data.map(tmdb.formatMovie) : [];
+        },
+        enabled: !!query
+    });
 
-        fetchResults();
+    useEffect(() => {
         window.scrollTo(0, 0);
     }, [query]);
 

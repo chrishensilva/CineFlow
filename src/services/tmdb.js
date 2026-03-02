@@ -81,7 +81,7 @@ export const tmdb = {
                 character: c.character,
                 profile: tmdb.getImageUrl(c.profile_path, 'w185')
             })) || [],
-            backdrop: tmdb.getImageUrl(movie.backdrop_path),
+            backdrop: tmdb.getImageUrl(movie.backdrop_path, 'w1280'),
             poster: tmdb.getImageUrl(movie.poster_path, 'w500'),
             trailer: movie.videos?.results?.find(v => v.type === 'Trailer')?.key
                 ? `https://www.youtube.com/watch?v=${movie.videos.results.find(v => v.type === 'Trailer').key}`
